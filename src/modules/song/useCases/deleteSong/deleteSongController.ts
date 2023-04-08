@@ -5,7 +5,7 @@ import { Request, Response } from 'express';
 class DeleteSongController {
   async handle(request: Request, response: Response) {
     const deleteSongUseCase = container.resolve(DeleteSongUseCase);
-    const { id } = request.params;
+    let { id } = request.params;
 
     await deleteSongUseCase.execute({
       id

@@ -4,8 +4,9 @@ import { Request, Response } from 'express';
 
 class CreateSongController {
   async handle(request: Request, response: Response) {
-    const createSongUseCase = container.resolve(CreateSongUseCase);
     const { name, artist, imageurl, notes, popularity } = request.body;
+
+    const createSongUseCase = container.resolve(CreateSongUseCase);
 
     await createSongUseCase.execute({
       name, 

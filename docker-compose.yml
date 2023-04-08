@@ -28,13 +28,11 @@ services:
     volumes:
       - ./:/app
     environment:
-      MYSQL_HOST: 127.0.0.1
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-      MYSQL_DB: music
-      MYSQL_PORT: 3306
-    depends_on:
-      - mysql_database
-      - redis_server
+      DB_DATABASE: music
+      DB_HOST: mysql_database
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: root
+      REDIS_HOST: redis_server
     stdin_open: true
     tty: true

@@ -1,21 +1,28 @@
-import { RedisCache } from '../../../../shared/infra/redis';
-import { Song } from '../../infra/entities/Song';
+import { AppError } from '@errors/appError';
+import { ISongRepository } from '@modules/song/repositories/ISongRepository';
+import { inject, injectable } from 'tsyringe';
+import  cache from '@shared/infra/redis';
 
-const redisCache = new RedisCache();
-
-interface IRequest {
-  id: string;
-}
-
+@injectable()
 class ListSongByIdUseCase {
-  async execute({id}: IRequest) {
-    let song = await redisCache.get(id);
+  constructor(
+    @inject('SongRepository')
+    private songRepository: ISongRepository
+  ) {}
 
-    if (!song) 
-      song = await Song.findByPk(id);
+  async execute({id}) {
+    let song;
+
+    song = await cache.get(id);
+
+    if (song) 
+      song = JSON.parse(song)
+
+      if (!song) 
+      song = await this.songRepository.findByID(id);
   
     if (!song) 
-      throw new Error('Song does not exist');
+      throw new AppError('Song does not exist', 404, 'Not Found');
 
     return song;
   }

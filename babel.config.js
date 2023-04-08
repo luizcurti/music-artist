@@ -22,6 +22,7 @@ module.exports = {
           '@modules': './src/modules',
           '@errors': './src/errors',
           '@utils': './src/utils',
+          '@erros': './src/erros',
         },
       },
     ],
