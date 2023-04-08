@@ -5,7 +5,8 @@ class RedisCache {
 
    constructor() {
     this.cache = createClient({
-      url:'redis://redis_server:6379'
+      url:'redis://localhost:6379'
+//      url:'redis://redis_server:6379'
     });
 
     this.cache.on("connect", () => { console.log(`Redis connection established`); });

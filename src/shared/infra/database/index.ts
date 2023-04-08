@@ -9,8 +9,7 @@ const configs = {
   LOCAL: ormconfig as ConnectionOptions[],
 };
 
-const dataBaseConfigs =
-  configs[process.env.ENV] || (ormconfig as ConnectionOptions[]);
+const dataBaseConfigs = configs[process.env.ENV] || (ormconfig as ConnectionOptions[]);
 
 class TypedDatabase {
   async init() {
@@ -20,9 +19,12 @@ class TypedDatabase {
         const connection = connectionManager.create(dataBaseConfig);
 
         await connection.connect();
-        console.log( `[DATABASE] ${dataBaseConfig.name.toUpperCase()} CONNECTED` );
+        
+        // await connection.query('CREATE SCHEMA IF NOT EXISTS music')
+
+        console.log( `[DATABASE] ${dataBaseConfig.name} CONNECTED` );
       } catch (error) {
-        console.log( `[DATABASE] ${dataBaseConfig.name.toUpperCase()} ERROR`, error );
+        console.log( `[DATABASE] ${dataBaseConfig.name} ERROR`, error );
       }
     }
   }
