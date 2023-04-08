@@ -1,15 +1,9 @@
-import { ISongRepository } from '@modules/song/repositories/ISongRepository';
-import { inject, injectable } from 'tsyringe';
+import { RedisCache } from '../../../../shared/infra/redis';
+import { Song } from '../../infra/entities/Song';
 
-@injectable()
 class ListAllSongUseCase {
-  constructor(
-    @inject('SongRepository')
-    private songRepository: ISongRepository
-  ) {}
-
   async execute() {
-    return await this.songRepository.findAll();
+    return await Song.findAll();
   }
 }
 

@@ -1,35 +1,39 @@
-import { createClient } from 'redis';
+import { createClient } from "redis";
 
 class RedisCache {
-  private readonly cache: any;
+  private readonly cache;
 
-   constructor() {
+  constructor() {
     this.cache = createClient({
-      url:'redis://redis_server:6379'
+      url: process.env.REDIS_HOST,
+      password: process.env.REDIS_PASSWORD,
     });
 
-    this.cache.on("connect", () => { console.log(`Redis connection established`); });
+    this.cache.on("connect", () => {
+      console.log(`Redis connection established`);
+    });
 
-    this.cache.on("error", (error) => { console.error(`Redis error, service degraded: ${error}`); });
-
-    this.cache.connect();
+    this.cache.on("error", (error) => {
+      console.error(`Redis error, service degraded: ${error}`);
+    });
   }
 
-  async get(key: string | number) {
-    return this.cache.get(key);
-  }
+  add = (key, value) => {
+    this.cache.set(key, value);
+  };
 
-  async add(key: string | number, value) {
-    this.cache.set(key, JSON.stringify(value));
-  }
+  get = async (key) => {
+    const data = await this.cache.get(key);
+    return JSON.parse(data);
+  };
 
-  async del(key: string | number){
+  del(key: string) {
     this.cache.del(key);
   }
 
-  async flush(){
-    this.cache.flush(); 
+  flush() {
+    this.cache.flushall();
   }
-} 
+}
 
-export default new RedisCache();
+export { RedisCache }

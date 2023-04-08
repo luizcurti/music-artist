@@ -1,7 +1,7 @@
-import { inject, injectable } from 'tsyringe';
-import { ISongRepository } from '@modules/song/repositories/ISongRepository';
-import  cache from '@shared/infra/redis';
-import { v4 as uuidv4 } from 'uuid';
+import { RedisCache } from '../../../../shared/infra/redis';
+import { Song } from '../../infra/entities/Song';
+
+const redisCache = new RedisCache();
 
 interface IRequest {
   name: string;
@@ -11,20 +11,13 @@ interface IRequest {
   popularity: string
 }
 
-@injectable()
 class CreateSongUseCase {
-  constructor(
-    @inject('SongRepository')
-    private songRepository: ISongRepository
-  ) {}
-
   async execute({name, artist, imageurl, notes, popularity}: IRequest) {
-    const id = uuidv4();
-    
-    const song = await this.songRepository.create({id, name, artist, imageurl, notes, popularity});
+
+    const song = await Song.create({name, artist, imageurl, notes, popularity});
 
     if (song.id) 
-      await cache.add(song.id, song);
+      await redisCache.add(song.id, JSON.stringify([{ song }]), );
 
     return song;
   }

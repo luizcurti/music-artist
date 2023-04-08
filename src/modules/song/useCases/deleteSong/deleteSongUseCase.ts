@@ -1,23 +1,21 @@
-import { AppError } from '@errors/appError';
-import { ISongRepository } from '@modules/song/repositories/ISongRepository';
-import { inject, injectable } from 'tsyringe';
-import  cache from '@shared/infra/redis';
+import { RedisCache } from '../../../../shared/infra/redis';
+import { Song } from '../../infra/entities/Song';
 
-@injectable()
+const redisCache = new RedisCache();
+
+interface IRequest {
+  id: string;
+}
+
 class DeleteSongUseCase {
-  constructor(
-    @inject('SongRepository')
-    private songRepository: ISongRepository
-  ) {}
-
-  async execute({id}) {
-    const song = await this.songRepository.findByID(id);
+  async execute({id}: IRequest) {
+    const song = await Song.findByPk(id);
 
     if (!song) 
-      throw new AppError('Song does not exist', 404, 'Not Found');
+      throw new Error('Song does not exist');
 
-    await this.songRepository.remove(song);
-    await cache.del(id);
+    await song.destroy();
+    redisCache.del(id);
 
     return "Deleted";
   }

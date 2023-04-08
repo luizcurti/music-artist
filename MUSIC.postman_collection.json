@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "2cebdfac-7194-4c69-afdd-7d39209b3ecd",
+		"_postman_id": "8f22c400-0603-447d-9a6a-fb2d5ca92b2d",
 		"name": "MUSIC",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "22118074"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -24,12 +23,9 @@
 					}
 				},
 				"url": {
-					"raw": "127.0.0.1:3005/api/music/",
+					"raw": "localhost:3005/api/music/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"localhost"
 					],
 					"port": "3005",
 					"path": [
@@ -59,7 +55,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3005/api/music/:id",
+					"raw": "localhost:3005/api/music/2",
 					"host": [
 						"localhost"
 					],
@@ -67,13 +63,7 @@
 					"path": [
 						"api",
 						"music",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": null
-						}
+						"2"
 					]
 				}
 			},
@@ -100,7 +90,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3005/api/music/:id",
+					"raw": "localhost:3005/api/music/2",
 					"host": [
 						"localhost"
 					],
@@ -108,13 +98,7 @@
 					"path": [
 						"api",
 						"music",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": null
-						}
+						"2"
 					]
 				}
 			},
@@ -173,7 +157,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3005/api/music/:id",
+					"raw": "localhost:3005/api/music/2",
 					"host": [
 						"localhost"
 					],
@@ -181,13 +165,7 @@
 					"path": [
 						"api",
 						"music",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": null
-						}
+						"2"
 					]
 				}
 			},
