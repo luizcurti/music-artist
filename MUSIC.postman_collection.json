@@ -23,7 +23,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/api/music/",
+					"raw": "localhost:3005/api/music/",
 					"host": [
 						"localhost"
 					],
@@ -55,7 +55,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/api/music/2",
+					"raw": "localhost:3005/api/music/2",
 					"host": [
 						"localhost"
 					],
@@ -90,7 +90,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/api/music/2",
+					"raw": "localhost:3005/api/music/2",
 					"host": [
 						"localhost"
 					],
@@ -125,7 +125,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/api/music/",
+					"raw": "localhost:3005/api/music/",
 					"host": [
 						"localhost"
 					],
@@ -157,7 +157,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/api/music/2",
+					"raw": "localhost:3005/api/music/2",
 					"host": [
 						"localhost"
 					],
