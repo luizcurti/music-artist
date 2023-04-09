@@ -6,7 +6,8 @@ import { EditSongController } from '../../../../modules/song/useCases/editSong/e
 import { ListAllSongController } from '../../../../modules/song/useCases/listAllSong/listAllSongController';
 import { ListSongByIdController } from '../../../../modules/song/useCases/listSongById/listSongByIdController';
 
-const router = Router();
+const songsRoutes = Router();
+const songsPrefix = `/`;
 
 const listAllSongController = new ListAllSongController();
 const listSongByIdController = new ListSongByIdController();
@@ -14,11 +15,11 @@ const createSongController = new CreateSongController();
 const editSongController = new EditSongController();
 const deleteSongController = new DeleteSongController();
 
-router.get('/', listAllSongController.handle);
-router.get('/:id', listSongByIdController.handle);
-router.post('/', createSongController.handle);
-router.put('/:id', editSongController.handle);
-router.delete('/:id', deleteSongController.handle);
+songsRoutes.get('/', listAllSongController.handle);
+songsRoutes.get('/:id', listSongByIdController.handle);
+songsRoutes.post('/', createSongController.handle);
+songsRoutes.put('/:id', editSongController.handle);
+songsRoutes.delete('/:id', deleteSongController.handle);
 
 
-export { router };
+export { songsRoutes, songsPrefix };

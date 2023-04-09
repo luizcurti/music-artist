@@ -1,8 +1,13 @@
+import '@config/env';
+import express from 'express';
+import 'express-async-errors';
+
+import helmet from 'helmet';
+import cors from 'cors';
+
 import Database from '../infra/database/sequelize';
 
-import express from 'express';
-
-import { router } from './http/routes/songRoute';
+import { routes } from './http/routes/index';
 
 class App {
   public server: any;
@@ -23,6 +28,8 @@ class App {
   }
 
   middlewares() {
+    this.server.use(cors());
+    this.server.use(helmet());
     this.server.use(express.urlencoded({ extended: true }));
     this.server.use(express.json());
 
@@ -30,7 +37,7 @@ class App {
   }
 
   routes() {
-    this.server.use('/api/music', router);
+    this.server.use('/api/music', routes);
 
     console.log('[SERVER] ROUTES REGISTERED');
   }

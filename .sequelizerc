@@ -1,8 +1,8 @@
 const { resolve } = require('path');
 
 module.exports = {
-  config: resolve(__dirname, 'src', 'shared', 'infra', 'database', 'sequelize.ts'),
-  'models-path': resolve(__dirname, 'src', 'modules', 'song', 'infra', 'entities'),
-  'migrations-path': resolve(__dirname, 'src', 'shared', 'infra', 'database', 'migrations'),
-  'seeders-path': resolve(__dirname, 'src', 'shared', 'infra', 'database','seeds'),
+  config: resolve('dist/shared/infra/database/sequelize.js'),
+  'models-path': resolve('src/modules/song/infra/entities'),
+  'migrations-path': resolve('src/shared/infra/database/migrations'),
+  'seeders-path': resolve( 'src/shared/infra/database/seeds'),
 }

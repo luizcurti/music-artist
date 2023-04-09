@@ -1,6 +1,10 @@
+'use strict';
+import 'reflect-metadata';
+
+import '@config/env';
 
 import { Sequelize } from 'sequelize-typescript'
-import { Song } from '../../../modules/song/infra/entities/Song';
+import { Song } from '@modules/song/infra/entities/Song';
 
 class TypedDatabase {
   async init() {
