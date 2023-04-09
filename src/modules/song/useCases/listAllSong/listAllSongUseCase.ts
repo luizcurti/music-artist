@@ -1,5 +1,4 @@
-import { RedisCache } from '../../../../shared/infra/redis';
-import { Song } from '../../infra/entities/Song';
+import { Song } from '@modules/song/infra/entities/Song';
 
 class ListAllSongUseCase {
   async execute() {

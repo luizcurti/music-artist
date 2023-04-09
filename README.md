@@ -12,6 +12,8 @@ Run npx sequelize-cli db:create to create the database
 
 Run npx sequelize-cli db:migrate to create the table
 
+Run yarn dev
+
 The route for testing the api is: http://localhost:3005/api/music/
 
 The file "MUSIC.postman_collection.json" contains the routes for testing in Postman

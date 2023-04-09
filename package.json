@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "jest",
-    "dev": "ENV=LOCAL ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/server.ts",
+    "dev": "ENV=development ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/server.ts",
     "build": "rm -rf dist && babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
     "start": "node dist/shared/infra/server.js"
   },
@@ -30,7 +30,6 @@
     "sequelize": "^6.30.0",
     "sequelize-cli": "^6.6.0",
     "sequelize-typescript": "^2.1.5",
-    "sequelize-typescript-generator": "^10.0.1",
     "ts-node": "^10.9.1",
     "tsyringe": "^4.7.0",
     "uuid": "^9.0.0",

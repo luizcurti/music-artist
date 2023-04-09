@@ -1,7 +1,9 @@
-import { Table, Column, Model } from 'sequelize-typescript';
+import { Table, Column, Model, PrimaryKey, CreatedAt, UpdatedAt } from 'sequelize-typescript';
 
 @Table
 class Song extends Model {
+  
+  @PrimaryKey
   @Column
   id: string;
 
@@ -20,11 +22,13 @@ class Song extends Model {
   @Column
   popularity: string;
 
-  @Column
-  creationDate: Date;
+  @CreatedAt
+  @Column({ field: 'created_at' })
+  createdAt: Date;
 
-  @Column
-  updatedOn: Date;
+  @UpdatedAt
+  @Column({ field: 'updated_at' })
+  updatedAt: Date;
 }
 
 export { Song }

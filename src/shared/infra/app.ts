@@ -5,7 +5,7 @@ import 'express-async-errors';
 import helmet from 'helmet';
 import cors from 'cors';
 
-import Database from '../infra/database/sequelize';
+import Database from './database/index';
 
 import { routes } from './http/routes/index';
 
@@ -24,7 +24,13 @@ class App {
 
   async database() {
     console.log('[SERVER] DATABASE CONNECTING');
-    await Database.init();
+    Database.sync()
+    .then(() => {
+      console.log("Database successfully connected");
+    })
+    .catch((err) => {
+      console.log("Error", err);
+    });
   }
 
   middlewares() {

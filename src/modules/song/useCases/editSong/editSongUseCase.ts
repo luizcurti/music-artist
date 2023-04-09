@@ -1,7 +1,6 @@
-import { RedisCache } from '../../../../shared/infra/redis';
-import { Song } from '../../infra/entities/Song';
-
-const redisCache = new RedisCache();
+import  cache from '@shared/infra/redis';
+import { Song } from '@modules/song/infra/entities/Song';
+import { AppError } from '@errors/appError';
 
 interface IRequest {
   id: string;
@@ -17,15 +16,22 @@ class EditSongUseCase {
     const song = await Song.findByPk(id);
 
     if (!song) 
-      throw new Error('Song does not exist');
+      throw new AppError('Song does not exist', 404, 'Not Found');
 
-    const songUpdated = await song.update({id, name, artist, imageurl, notes, popularity});
+    song.name = name;
+    song.artist = artist;
+    song.imageurl = imageurl;
+    song.notes = notes;
+    song.popularity = popularity;
+
+    const songUpdated = await Song.update(  
+      { name: name, artist: artist, imageurl: imageurl, notes: notes, popularity: popularity },
+      { where: { id: id } }
+    );
 
     if (songUpdated) {
-      redisCache.del(id);
-      redisCache.add(id, JSON.stringify([{
-        name, artist, imageurl, notes, popularity,
-      }]));
+      await cache.del(id);
+      await cache.add(song.id, songUpdated);
     }
 
     return songUpdated;
