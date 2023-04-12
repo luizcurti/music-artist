@@ -21,8 +21,7 @@ module.exports = {
           '@shared': './src/shared',
           '@modules': './src/modules',
           '@errors': './src/errors',
-          '@utils': './src/utils',
-          '@erros': './src/erros',
+          '@utils': './src/utils'
         },
       },
     ],

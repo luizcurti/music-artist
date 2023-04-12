@@ -1,26 +1,22 @@
-/*
- * For a detailed explanation regarding each configuration property, visit:
- * https://jestjs.io/docs/configuration
- */
 
 module.exports = {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
   // Stop running tests after `n` failures
-  // bail: 0,
+  // bail: true,
 
   // The directory where Jest should store its cached dependency information
-  // cacheDirectory: "/private/var/folders/95/kn6rn50j33326k_j92l1nfhh0000gn/T/jest_dx",
+  // cacheDirectory: "/tmp/jest_rs",
 
-  // Automatically clear mock calls, instances and results before every test
-  // clearMocks: false,
+  // Automatically clear mock calls and instances between every test
+  clearMocks: true,
 
   // Indicates whether the coverage information should be collected while executing the test
   collectCoverage: true,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
-  // collectCoverageFrom: undefined,
+  collectCoverageFrom: ["<rootDir>/src/modules/**/useCases/**/*.ts"],
 
   // The directory where Jest should output its coverage files
   coverageDirectory: "coverage",
@@ -34,12 +30,7 @@ module.exports = {
   coverageProvider: "v8",
 
   // A list of reporter names that Jest uses when writing coverage reports
-  // coverageReporters: [
-  //   "json",
-  //   "text",
-  //   "lcov",
-  //   "clover"
-  // ],
+  coverageReporters: ["text-summary", "lcov"],
 
   // An object that configures minimum threshold enforcement for coverage results
   // coverageThreshold: undefined,
@@ -73,18 +64,24 @@ module.exports = {
   // An array of file extensions your modules use
   // moduleFileExtensions: [
   //   "js",
+  //   "json",
   //   "jsx",
   //   "ts",
   //   "tsx",
-  //   "json",
   //   "node"
   // ],
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-  // moduleNameMapper: {},
+  moduleNameMapper: {
+    '^@config/(.*)$': '<rootDir>/src/config/$1',
+    '^@shared/(.*)$': '<rootDir>/src/shared/$1',
+    '^@modules/(.*)$': '<rootDir>/src/modules/$1',
+    '^@errors/(.*)$': '<rootDir>/src/errors/$1',
+    '^@utils/(.*)$': '<rootDir>/src/utils/$1',
+  },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
-  // modulePathIgnorePatterns: [],
+  modulePathIgnorePatterns: ['mockData'],
 
   // Activates notifications for test results
   // notify: false,
@@ -93,7 +90,7 @@ module.exports = {
   // notifyMode: "failure-change",
 
   // A preset that is used as a base for Jest's configuration
-  // preset: undefined,
+  preset: "ts-jest",
 
   // Run tests from one or more projects
   // projects: undefined,
@@ -101,7 +98,7 @@ module.exports = {
   // Use this configuration option to add custom reporters to Jest
   // reporters: undefined,
 
-  // Automatically reset mock state before every test
+  // Automatically reset mock state between every test
   // resetMocks: false,
 
   // Reset the module registry before running each individual test
@@ -110,7 +107,7 @@ module.exports = {
   // A path to a custom resolver
   // resolver: undefined,
 
-  // Automatically restore mock state and implementation before every test
+  // Automatically restore mock state between every test
   // restoreMocks: false,
 
   // The root directory that Jest should scan for tests and modules within
@@ -137,7 +134,7 @@ module.exports = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  // testEnvironment: "jest-environment-node",
+  testEnvironment: "node",
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -146,10 +143,7 @@ module.exports = {
   // testLocationInResults: false,
 
   // The glob patterns Jest uses to detect test files
-  // testMatch: [
-  //   "**/__tests__/**/*.[jt]s?(x)",
-  //   "**/?(*.)+(spec|test).[tj]s?(x)"
-  // ],
+  testMatch: ["**/*.spec.ts"],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   // testPathIgnorePatterns: [
@@ -163,7 +157,7 @@ module.exports = {
   // testResultsProcessor: undefined,
 
   // This option allows use of a custom test runner
-  // testRunner: "jest-circus/runner",
+  // testRunner: "jasmine2",
 
   // This option sets the URL for the jsdom environment. It is reflected in properties such as location.href
   // testURL: "http://localhost",

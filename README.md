@@ -2,6 +2,8 @@
 
 Before booting the system, run "yarn install"
 
+To run the unit tests "yarn test"
+
 You need docker to run the application
 
 You can use the container with docker-compose up

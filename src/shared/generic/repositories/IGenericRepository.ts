@@ -2,7 +2,7 @@ import { FindManyOptions } from 'typeorm';
 
 interface IGenericRepository<T> {
   create(data: Record<string, unknown>): Promise<T>;
-  findByID(id: number, relations?: string[]): Promise<T>;
+  findByID(id: T, relations?: string[]): Promise<T>;
   findByIds(ids: number[], relations?: string[], order?: object): Promise<T[]>;
   findAll(options?: FindManyOptions<T>): Promise<T[]>;
   countAll(): Promise<number>;
