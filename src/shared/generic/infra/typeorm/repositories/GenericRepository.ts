@@ -22,34 +22,15 @@ class GenericRepository<T> implements IGenericRepository<T> {
     return el;
   }
 
-  async findByID(id: T, relations: string[] = []): Promise<T> {
+  async findByID(id: string, relations: string[] = []): Promise<T> {
     return this.repository.findOne({
       where: { id },
       relations,
     });
   }
 
-  async findByIds(
-    ids: number[],
-    relations: string[] = [],
-    order: object = { id: 'ASC' }
-  ): Promise<T[]> {
-    return this.repository.findByIds(ids, {
-      relations,
-      order,
-    });
-  }
-
   async findAll(options?: FindManyOptions<T>): Promise<T[]> {
     return this.repository.find(options);
-  }
-
-  async countAll(): Promise<number> {
-    return this.repository.count();
-  }
-
-  async countByFilter(options?: FindManyOptions<T>): Promise<number> {
-    return this.repository.count(options);
   }
 
   async update(el: T): Promise<T> {

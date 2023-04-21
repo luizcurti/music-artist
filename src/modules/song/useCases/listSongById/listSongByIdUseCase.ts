@@ -2,6 +2,7 @@ import { AppError } from '@errors/appError';
 import { ISongRepository } from '@modules/song/repositories/ISongRepository';
 import { inject, injectable } from 'tsyringe';
 import  cache from '@shared/infra/redis';
+import { IRequest, IResponse } from './iListSongDTO';
 
 @injectable()
 class ListSongByIdUseCase {
@@ -10,7 +11,7 @@ class ListSongByIdUseCase {
     private songRepository: ISongRepository
   ) {}
 
-  async execute({id}) {
+  async execute({id}: IRequest): Promise<IResponse> {
     let song;
 
     song = await cache.get(id);
@@ -19,7 +20,7 @@ class ListSongByIdUseCase {
       song = JSON.parse(song)
 
       if (!song) 
-      song = await this.songRepository.findByID(id);
+        song = await this.songRepository.findByID(id);
   
     if (!song) 
       throw new AppError('Song does not exist', 404, 'Not Found');

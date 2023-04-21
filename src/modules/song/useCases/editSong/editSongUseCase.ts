@@ -2,6 +2,7 @@ import { AppError } from '@errors/appError';
 import { ISongRepository } from '@modules/song/repositories/ISongRepository';
 import { inject, injectable } from 'tsyringe';
 import  cache from '@shared/infra/redis';
+import { IRequest, IResponse } from './iDeleteSongDTO';
 
 @injectable()
 class EditSongUseCase {
@@ -10,7 +11,7 @@ class EditSongUseCase {
     private songRepository: ISongRepository
   ) {}
 
-  async execute({id, name, artist, imageurl, notes, popularity}) {
+  async execute({id, name, artist, imageurl, notes, popularity}: IRequest): Promise<IResponse> {
     const song = await this.songRepository.findByID(id);
 
     if (!song) 

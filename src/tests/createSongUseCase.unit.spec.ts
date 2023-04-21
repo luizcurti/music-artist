@@ -60,7 +60,6 @@ describe('CreateSongUseCase', () => {
       createdAt: expect.any(Date),
       updatedAt: expect.any(Date),
     });
-    // expect(songRepository.create).toHaveBeenCalledWith(song);
-    // expect(cache.add).toHaveBeenCalledWith(createdSong.id, mockedSong);
+    expect(cache.add).toHaveBeenCalledWith(createdSong.id, mockedSong);
   });
 });

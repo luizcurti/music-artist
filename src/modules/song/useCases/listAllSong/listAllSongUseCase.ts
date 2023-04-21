@@ -1,5 +1,6 @@
 import { ISongRepository } from '@modules/song/repositories/ISongRepository';
 import { inject, injectable } from 'tsyringe';
+import { IResponse } from '../createSong/iCreateSongDTO';
 
 @injectable()
 class ListAllSongUseCase {
@@ -8,7 +9,7 @@ class ListAllSongUseCase {
     private songRepository: ISongRepository
   ) {}
 
-  async execute() {
+  async execute(): Promise<IResponse[]> {
     return await this.songRepository.findAll();
   }
 }

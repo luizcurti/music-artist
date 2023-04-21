@@ -4,6 +4,8 @@ import config from '@config/index';
 const { type, port, host, username, password, names } = config.database;
 const { music } = names;
 
+console.log(config.database);
+
 export default [
   {
     name: music,

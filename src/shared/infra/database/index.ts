@@ -20,8 +20,6 @@ class TypedDatabase {
 
         await connection.connect();
         
-        // await connection.query('CREATE SCHEMA IF NOT EXISTS music')
-
         console.log( `[DATABASE] ${dataBaseConfig.name} CONNECTED` );
       } catch (error) {
         console.log( `[DATABASE] ${dataBaseConfig.name} ERROR`, error );
