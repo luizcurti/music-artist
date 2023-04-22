@@ -20,20 +20,20 @@ services:
     restart: always
     ports:
       - "6379:6379"      
-  # app:
-  #   image: node:16-alpine
-  #   command: sh -c "yarn install && yarn dev"
-  #   ports:
-  #     - 3005:3005
-  #   working_dir: /app
-  #   volumes:
-  #     - ./:/app
-  #   environment:
-  #     DB_DATABASE: music
-  #     DB_HOST: mysql_database
-  #     DB_PORT: 3306
-  #     DB_USER: root
-  #     DB_PASSWORD: root
-  #     REDIS_HOST: redis_server
-  #   stdin_open: true
-  #   tty: true
+  app:
+    image: node:16-alpine
+    command: sh -c "yarn install && yarn dev"
+    ports:
+      - 3005:3005
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      DB_DATABASE: music
+      DB_HOST: mysql_database
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: root
+      REDIS_HOST: redis_server
+    stdin_open: true
+    tty: true

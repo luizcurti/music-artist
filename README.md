@@ -10,8 +10,6 @@ You can use the container with docker-compose up
 
 Open a new terminal and enter the music-song directory
 
-Go to mysql and create a schema music
-
 Run yarn typeorm migrations:run to create the table
 
 The route for testing the api is: http://localhost:3005/api/music/

@@ -46,8 +46,8 @@ describe('DeleteSongUseCase', () => {
       imageurl: 'https://example.com/song-image.jpg',
       notes: 'Song Notes',
       popularity: '10',
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      created_at: new Date(),
+      updated_at: new Date(),
     };
     const mockedSong = { ...song };
 

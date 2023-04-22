@@ -2,6 +2,7 @@ import "reflect-metadata";
 import { container } from 'tsyringe';
 import { ISongRepository } from '@modules/song/repositories/ISongRepository';
 import { CreateSongUseCase } from '@modules/song/useCases/createSong/createSongUseCase';
+import { v4 as uuidv4 } from 'uuid';
 import cache from '@shared/infra/redis';
 
 import { createClient } from "redis";
@@ -36,8 +37,9 @@ describe('CreateSongUseCase', () => {
   });
 
   it('should create a new song', async () => {
+
     const song = {
-      id: '',
+      id: uuidv4(),
       name: 'Song Name',
       artist: 'Song Artist',
       imageurl: 'https://example.com/song-image.jpg',
@@ -45,7 +47,7 @@ describe('CreateSongUseCase', () => {
       popularity: '10',
     };
 
-    const mockedSong = { ...song, createdAt: new Date(), updatedAt: new Date() };
+    const mockedSong = { ...song, created_at: new Date(), updated_at: new Date() };
     songRepository.create.mockResolvedValueOnce(mockedSong);
 
     const createdSong = await createSongUseCase.execute(song);
@@ -57,9 +59,9 @@ describe('CreateSongUseCase', () => {
       imageurl: 'https://example.com/song-image.jpg',
       notes: 'Song Notes',
       popularity: '10',
-      createdAt: expect.any(Date),
-      updatedAt: expect.any(Date),
-    });
-    expect(cache.add).toHaveBeenCalledWith(createdSong.id, mockedSong);
+      created_at: expect.any(Date),
+      updated_at: expect.any(Date),
+  });
+    expect(cache.add).toHaveBeenCalledWith(createdSong.id, createdSong);
   });
 });

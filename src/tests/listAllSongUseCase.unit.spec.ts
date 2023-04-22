@@ -31,8 +31,8 @@ describe('ListAllSongUseCase', () => {
         imageurl: 'Image URL 1',
         notes: 'Notes 1',
         popularity: '5',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        created_at: new Date(),
+        updated_at: new Date(),
       },
       {
         id: uuidv4(),
@@ -41,8 +41,8 @@ describe('ListAllSongUseCase', () => {
         imageurl: 'Image URL 2',
         notes: 'Notes 2',
         popularity: '7',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        created_at: new Date(),
+        updated_at: new Date(),
       },
       {
         id: uuidv4(),
@@ -51,8 +51,8 @@ describe('ListAllSongUseCase', () => {
         imageurl: 'Image URL 3',
         notes: 'Notes 3',
         popularity: '9',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        created_at: new Date(),
+        updated_at: new Date(),
       },
     ];
 

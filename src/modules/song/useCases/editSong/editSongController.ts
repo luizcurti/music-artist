@@ -9,7 +9,7 @@ class EditSongController {
     const { name, artist, imageurl, notes, popularity } = request.body;
 
     await editSongUseCase.execute({
-      id: Number(id),
+      id,
       name, 
       artist, 
       imageurl, 

@@ -42,8 +42,8 @@ describe('EditSongUseCase', () => {
       imageurl: 'Old Image URL',
       notes: 'Old Notes',
       popularity: '5',
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      created_at: new Date(),
+      updated_at: new Date(),
     };
     const updatedSong = {
       ...song,

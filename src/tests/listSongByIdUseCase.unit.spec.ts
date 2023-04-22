@@ -44,8 +44,8 @@ describe('ListSongByIdUseCase', () => {
       imageurl: 'Old Image URL',
       notes: 'Old Notes',
       popularity: '5',
-      createdAt: new Date().toDateString(),
-      updatedAt: new Date().toDateString(),
+      created_at: new Date().toDateString(),
+      updated_at: new Date().toDateString(),
     };
 
     const mockedSong = { ...song };
@@ -65,8 +65,8 @@ describe('ListSongByIdUseCase', () => {
       imageurl: 'Old Image URL',
       notes: 'Old Notes',
       popularity: '5',
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      created_at: new Date(),
+      updated_at: new Date(),
     };
 
     jest.spyOn(cache, 'get').mockImplementation(() => Promise.resolve(null));

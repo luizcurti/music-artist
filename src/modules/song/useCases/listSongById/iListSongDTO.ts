@@ -9,6 +9,6 @@ export interface IResponse {
     imageurl: string;
     notes: string;
     popularity: string
-    createdAt: Date;
-    updatedAt: Date;
+    created_at: Date;
+    updated_at: Date;
 }
