@@ -88,7 +88,7 @@ describe('ListAllSongController', () => {
     jest.spyOn(container, 'resolve').mockReturnValue(listAllSongUseCase);
     jest.spyOn(listAllSongUseCase, 'execute').mockReturnValue(Promise.resolve(songs));
     
-    const returnList =  await listAllSongController.handle(request, response);
+    await listAllSongController.handle(request, response);
 
     expect(response.status).toHaveBeenCalledWith(200);
     expect(response.json).toHaveBeenCalledWith(songsResponse);
