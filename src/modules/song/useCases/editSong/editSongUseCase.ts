@@ -2,7 +2,7 @@ import { AppError } from '@errors/appError';
 import { ISongRepository } from '@modules/song/repositories/ISongRepository';
 import { inject, injectable } from 'tsyringe';
 import  cache from '@shared/infra/redis';
-import { IRequest, IResponse } from './iDeleteSongDTO';
+import { IRequest, IResponse } from './iEditSongDTO';
 
 @injectable()
 class EditSongUseCase {

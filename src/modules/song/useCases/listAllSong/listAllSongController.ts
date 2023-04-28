@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { container } from 'tsyringe';
 import { ListAllSongUseCase } from './listAllSongUseCase';
 import { Request, Response } from 'express';
