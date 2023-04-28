@@ -6,13 +6,24 @@ import { ListAllSongUseCase } from '@modules/song/useCases/listAllSong/listAllSo
 import { v4 as uuidv4 } from 'uuid';
 
 jest.mock('tsyringe');
-jest.mock('@modules/song/useCases/listAllSong/listAllSongUseCase');
+jest.mock('@modules/song/useCases/listAllSong/listAllSongUseCase', () => {
+  return {
+    ListAllSongUseCase: jest.fn().mockImplementation(() => {
+      return {
+        execute: jest.fn()
+      }
+    })
+  }
+});
 
 describe('ListAllSongController', () => {
   let listAllSongController: ListAllSongController;
-  let listAllSongUseCase: jest.Mocked<ListAllSongUseCase>;
+  let listAllSongUseCase: ListAllSongUseCase;
   let request: Request;
-  let response: Response;
+  let response = {
+    status: jest.fn().mockReturnThis(),
+    json: jest.fn().mockReturnThis(),
+  } as unknown as Response;
 
   var songs = [
     {
@@ -39,8 +50,11 @@ describe('ListAllSongController', () => {
 
   beforeEach(() => {
     request = {} as Request;
-    response = {} as Response;
-    listAllSongUseCase = {} as ListAllSongUseCase & jest.Mocked<ListAllSongUseCase>;
+    listAllSongController = new ListAllSongController();
+
+    listAllSongUseCase = {
+      execute: jest.fn(),
+    } as unknown as jest.Mocked<ListAllSongUseCase>;
   });
   
   afterEach(() => {
@@ -48,15 +62,35 @@ describe('ListAllSongController', () => {
   });
   
   it('should list all songs successfully', async () => {
-    response.status = jest.fn().mockReturnThis();
-    response.json = jest.fn().mockReturnValue(response);
-  
+    const songsResponse = [
+      {
+        id: expect.any(String),
+        name: 'Song Name',
+        artist: 'Song Artist',
+        imageurl: 'https://example.com/song-image.jpg',
+        notes: 'Song Notes',
+        popularity: '10',
+        created_at: expect.any(Date),
+        updated_at: expect.any(Date),
+      },
+      {
+        id: expect.any(String),
+        name: 'Song Name 2',
+        artist: 'Song Artist 2',
+        imageurl: 'https://example.com/song-image2.jpg',
+        notes: 'Song Notes 2',
+        popularity: '7',
+        created_at: expect.any(Date),
+        updated_at: expect.any(Date),
+      }
+    ];
+
     jest.spyOn(container, 'resolve').mockReturnValue(listAllSongUseCase);
     jest.spyOn(listAllSongUseCase, 'execute').mockReturnValue(Promise.resolve(songs));
-   
-    await listAllSongController.handle(request, response);
-  
+    
+    const returnList =  await listAllSongController.handle(request, response);
+
     expect(response.status).toHaveBeenCalledWith(200);
-    expect(response.json).toHaveBeenCalledWith(songs);
+    expect(response.json).toHaveBeenCalledWith(songsResponse);
   });
 });
