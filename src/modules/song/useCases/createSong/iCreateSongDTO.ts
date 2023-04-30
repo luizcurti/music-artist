@@ -1,21 +1,18 @@
 export interface IRequest {
-    name: string;
-    artist: string;
-    imageurl: string;
-    notes: string;
-    popularity: string
-  }
+  name: string;
+  artist: string;
+  imageurl: string;
+  notes: string;
+  popularity: string
+}
 
 export interface IResponse {
-    id: string;
-    name: string;
-    artist: string;
-    imageurl: string;
-    notes: string;
-    popularity: string
-    created_at: Date;
-    updated_at: Date;
-}    
-    
-    
-  
+  id: string;
+  name: string;
+  artist: string;
+  imageurl: string;
+  notes: string;
+  popularity: string
+  created_at: Date;
+  updated_at: Date;
+}
