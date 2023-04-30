@@ -13,7 +13,7 @@ class CreateSongController {
       artist: Yup.string().required(), 
       imageurl: Yup.string().required(),
       notes: Yup.string().required(),
-      popularity: Yup.number().required()
+      popularity: Yup.string().required()
     });
 
     const validation = await schema.validate(request.body);

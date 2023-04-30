@@ -52,12 +52,12 @@ describe('ListSongByIdController', () => {
     it('should return a song by ID', async () => {
         const id =  String(uuidv4());
 
-        const requestMock = { params: { id } } as unknown as Request; 
+        const request = { params: { id } }; 
 
         jest.spyOn(container, 'resolve').mockReturnValue(listSongByIdUseCase);
         jest.spyOn(listSongByIdUseCase, 'execute').mockReturnValue(Promise.resolve(song));
 
-        await listSongByIdController.handle(requestMock, response);
+        await listSongByIdController.handle(request as unknown as Request, response as Response);
 
         expect(listSongByIdUseCase.execute).toHaveBeenCalledWith({ id });
         expect(response.status).toHaveBeenCalledWith(200);
